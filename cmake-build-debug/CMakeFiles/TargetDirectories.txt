@@ -1,0 +1,3 @@
+C:/Users/Buddha/CLionProjects/Banko1/cmake-build-debug/CMakeFiles/Banko1.dir
+C:/Users/Buddha/CLionProjects/Banko1/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Buddha/CLionProjects/Banko1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
