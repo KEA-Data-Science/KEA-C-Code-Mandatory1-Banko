@@ -82,7 +82,7 @@ allocCounter = malloc(sizeof(struct BankoBoard)*collectionSize);
 
     for (int i = 0; i < collectionSize; ++i) {
         printf("malloc address: %d", &allocCounter);
-        allocCounter = );
+//        allocCounter = );
         allocCounter++;
     }
 
