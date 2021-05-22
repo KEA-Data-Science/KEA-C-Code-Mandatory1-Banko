@@ -1,3 +1,0 @@
-"C:\Program Files\JetBrains\CLion 2020.3.2\bin\cmake\win\bin\cmake.exe" -E rm -f CMakeFiles\Banko1.dir/objects.a
-C:\MinGW\bin\ar.exe cr CMakeFiles\Banko1.dir/objects.a @CMakeFiles\Banko1.dir\objects1.rsp
-C:\MinGW\bin\gcc.exe -g   -Wl,--whole-archive CMakeFiles\Banko1.dir/objects.a -Wl,--no-whole-archive  -o Banko1.exe -Wl,--out-implib,libBanko1.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\Banko1.dir\linklibs.rsp
