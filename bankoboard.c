@@ -66,7 +66,7 @@ int calculateDrawNecessity(int columnNumber, int drawsInColumn, int rowNumber, i
     return necessity;
 }
 
-
+/* Initializing Board memory and values. */
 void initBoard(struct BankoBoard *board, int id, int collectionSeed) {
     (*board).id = (int) calloc(1, sizeof(int));
     (*board).collectionSeed = (int) calloc(1, sizeof(int));
@@ -85,20 +85,6 @@ void initBoard(struct BankoBoard *board, int id, int collectionSeed) {
     fillArrayWithValue(board->row_0, 9, 0);
     fillArrayWithValue(board->row_1, 9, 0);
     fillArrayWithValue(board->row_2, 9, 0);
-}
-
-void deInitBoard(struct BankoBoard *board) {
-
-    free((void *) (*board).id);
-    free((void *) (*board).collectionSeed);
-
-    free((void *) (*board).hitsRow_1);
-    free((void *) (*board).hitsRow_2);
-    free((void *) (*board).hitsRow_3);
-
-    deallocIntArray(board->row_0, 9);
-    deallocIntArray(board->row_1, 9);
-    deallocIntArray(board->row_2, 9);
 }
 
 
@@ -145,9 +131,7 @@ void drawNextNumbersForColumn(int columnNumber,
     draw3RandomNumbers(possibles, tens);
 
     // figure out whether to 'draw' each of the three column-places
-    int necessityRow_0;
-    int necessityRow_1;
-    int necessityRow_2;
+    int necessityRow_0, necessityRow_1, necessityRow_2;
 
     int drawsInColumn = 0;
     // draw for 0
@@ -190,42 +174,30 @@ struct BankoBoard createBankoBoard(int boardID, int collectionSeed) {
 
 void createBoardCollection(struct BankoBoard *boardArrayPointer, int collectionSize, int collectionSeed) {
 
-    struct BankoBoard *allocCounter = boardArrayPointer;
-    allocCounter--;
-
-    allocCounter = malloc(sizeof(struct BankoBoard) * collectionSize);
-
-
-    for (int i = 0; i < collectionSize; ++i) {
-        printf("malloc address: %d", &allocCounter);
-//        allocCounter = );
-        allocCounter++;
-    }
 
     int corruptCounter = 0; // tracking number of corrupted boards generated and thrown away.
 
     for (int i = 0; i < collectionSize; ++i) {
         boardCorrupt = 0; // each board gets a new chance
-        printf("Printing Board\t%d\n", i);
+//        printf("Printing Board\t%d\n", i);
         struct BankoBoard newBoard;
 
         newBoard = createBankoBoard(i, collectionSeed);
 
         if (boardCorrupt >= 1) { // no corruption tolerated
-            printf("BOARD THROWN OUT, CREATING EXTRA : #%d\n", corruptCounter++);
+//            printf("BOARD THROWN OUT, CREATING EXTRA : #%d\n", corruptCounter++);
+            corruptCounter++;
             i--;
             continue;
         }
 
         *(boardArrayPointer + i) = newBoard;
     }
-    printf("Corrupt counter reached: %d", corruptCounter);
+    printf("Corrupt counter reached: %d\n"
+           "Meaning that many boards were 'thrown' out due to some impossibility\n"
+           " in the composition constraints.\n", corruptCounter);
 }
 
-void deallocBoardCollection(struct BankoBoard *collection, int collectionSize) {
-    // deInitBoard
-
-}
 
 void printRow(const int *array) {
     printf("Indexes: [%d]\t[%d]\t[%d]\t[%d]\t[%d]\t[%d]\t[%d]\t[%d]\t[%d]\n",

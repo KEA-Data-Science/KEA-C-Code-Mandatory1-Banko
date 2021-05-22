@@ -50,6 +50,5 @@ void printBoard(struct BankoBoard board);
 
 void initBoard(struct BankoBoard *board, int id, int collectionSeed);
 
-void deallocBoardCollection(struct BankoBoard *collection, int collectionSize);
 
 #endif //BANKO1_BANKOBOARD_H
